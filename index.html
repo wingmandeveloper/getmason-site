@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mason — Materials move forward</title>
+  <meta name="description" content="Mason is an autonomous material handling robot for construction sites. Contact sales.">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="nav" data-theme="dark">
+    <a class="nav__logo" href="#top" aria-label="Mason">
+      <span class="nav__glyph" aria-hidden="true"></span>
+      <span>Mason</span>
+    </a>
+    <nav class="nav__pill" aria-label="Primary">
+      <a href="#technology">Technology</a>
+      <i></i>
+      <a href="#vision">Vision</a>
+      <i></i>
+      <a href="#about">About</a>
+    </nav>
+    <a class="btn btn--pill btn--nav" href="#contact">Contact sales <span class="btn__arrow" aria-hidden="true">↗</span></a>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero" data-nav="dark">
+      <img class="hero__img" src="assets/hero.webp" alt="Mason, an autonomous yellow material handling robot with a grabber arm holding a brick, on a construction site at sunset">
+      <div class="hero__shade"></div>
+      <div class="hero__copy">
+        <p class="eyebrow">Construction robotics</p>
+        <h1>Materials move forward.</h1>
+        <p class="hero__sub">Robotics for the world’s most hands-on industry.</p>
+        <a class="btn btn--accent" href="#contact">Contact sales <span class="btn__arrow" aria-hidden="true">↗</span></a>
+      </div>
+      <div class="hero__scroll" aria-hidden="true"><span></span></div>
+    </section>
+
+    <!-- VISION -->
+    <section class="vision" id="vision" data-nav="light">
+      <p class="label reveal">Vision</p>
+      <h2 class="reveal">A job site moves at the speed of its materials.</h2>
+      <p class="vision__body reveal">Bricks, blocks, rebar, pallets. Skilled people spend hours a day carrying them from A to B. Mason takes the carrying, so your crew can keep building.</p>
+    </section>
+
+    <!-- PRODUCT ORBIT: scroll turns the machine -->
+    <section class="product" id="technology" data-nav="light">
+      <div class="product__sticky">
+        <p class="label product__label">Technology</p>
+
+        <div class="product__stage">
+          <canvas class="stage3d" aria-hidden="true"></canvas>
+          <div class="orbit" aria-label="Mason robot, shown from several angles as you scroll">
+            <div class="orbit__floor" aria-hidden="true"></div>
+            <img class="view" src="assets/view-side.webp"   alt="Mason, side profile" draggable="false">
+            <img class="view" src="assets/view-rear.webp"   alt="Mason, rear three-quarter view, loaded with bricks and rubble" draggable="false">
+            <img class="view" src="assets/view-tip.webp"    alt="Mason with its bed tipped to unload" draggable="false">
+            <img class="view view--crop" src="assets/view-detail.webp" alt="Close-up of Mason’s hydraulics and drivetrain" draggable="false">
+          </div>
+        </div>
+
+        <div class="product__row">
+          <div class="product__count">
+            <span id="cur">01</span><span class="product__total"> / 04</span>
+            <small id="view-name">Side profile</small>
+          </div>
+          <div class="product__texts">
+            <article class="step is-active">
+              <h3>Meet Mason.</h3>
+              <p>An autonomous hauler with its own arm, built for the job site. It moves the materials so your crew doesn’t have to.</p>
+            </article>
+            <article class="step">
+              <h3>Carries the load.</h3>
+              <p>Bricks, blocks and rubble, hauled across the site without anyone in the cab.</p>
+            </article>
+            <article class="step">
+              <h3>Tips. Places.</h3>
+              <p>A hydraulic bed unloads right at the point of use, so materials land where the work is.</p>
+            </article>
+            <article class="step">
+              <h3>Built for the site.</h3>
+              <p>Heavy-duty hydraulics, a rugged frame and big tyres. Mud, rubble and slopes are just the day job.</p>
+            </article>
+          </div>
+          <div class="product__aside">
+            <ol class="product__dots" aria-hidden="true">
+              <li class="is-active"></li><li></li><li></li><li></li>
+            </ol>
+            <p class="product__note">Illustrative renders. Mason is in development.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT / WHY -->
+    <section class="about" id="about" data-nav="light">
+      <p class="label reveal">Why Mason</p>
+      <h2 class="reveal">Less carrying.<br>More building.</h2>
+      <div class="about__grid">
+        <article class="reveal">
+          <span>01</span>
+          <h3>Safer sites</h3>
+          <p>Heavy, repetitive lifting is where people get hurt. Hand it to a machine built for it.</p>
+        </article>
+        <article class="reveal">
+          <span>02</span>
+          <h3>Skilled hands, where they count</h3>
+          <p>Your best people lay, fix and finish. They don’t spend the day moving pallets.</p>
+        </article>
+        <article class="reveal">
+          <span>03</span>
+          <h3>Work that keeps pace</h3>
+          <p>Materials arrive when the crew is ready for them, shift after shift.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT SALES -->
+    <section class="contact" id="contact" data-nav="dark">
+      <div class="contact__inner">
+        <p class="label label--dark reveal">Contact sales</p>
+        <h2 class="reveal">Put Mason<br>on your site.</h2>
+        <p class="contact__sub reveal">We’re working with a small group of contractors first. Tell us about your sites and our team will be in touch.</p>
+        <form class="form reveal" id="contact-form" novalidate>
+          <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="form__row">
+            <label class="field"><span>Name</span><input type="text" name="name" placeholder="Your name" autocomplete="name"></label>
+            <label class="field"><span>Work email</span><input type="email" name="email" placeholder="you@company.com" autocomplete="email" required></label>
+          </div>
+          <div class="form__row">
+            <label class="field"><span>Company</span><input type="text" name="company" placeholder="Company" autocomplete="organization"></label>
+            <label class="field field--select"><span>I am a</span>
+              <select name="role">
+                <option value="">Select</option>
+                <option>General contractor</option>
+                <option>Subcontractor</option>
+                <option>Developer</option>
+                <option>Equipment / rental</option>
+                <option>Investor</option>
+                <option>Other</option>
+              </select>
+            </label>
+          </div>
+          <label class="field field--full"><span>About your sites</span><textarea name="message" rows="3" placeholder="What are you building, and what are you moving?"></textarea></label>
+          <button class="btn btn--accent btn--lg" type="submit">Contact sales <span class="btn__arrow" aria-hidden="true">↗</span></button>
+          <p class="form__msg" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" data-nav="dark">
+    <a class="nav__logo" href="#top" aria-label="Mason"><span class="nav__glyph" aria-hidden="true"></span><span>Mason</span></a>
+    <p>Mason is a product in development. Imagery is illustrative.</p>
+    <p>© 2026 Mason</p>
+  </footer>
+
+  <script type="importmap">
+  { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  } }
+  </script>
+  <script src="main.js"></script>
+  <script type="module" src="viewer.js"></script>
+</body>
+</html>
