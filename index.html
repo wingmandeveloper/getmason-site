@@ -11,6 +11,76 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <noscript><style>.preload{display:none!important}html.is-loading{overflow:auto!important}</style></noscript>
+  <div class="preload" id="preload" role="status" aria-live="polite" aria-label="Loading Mason">
+    <div class="preload__top"><span class="glyph" aria-hidden="true"></span><span>Mason</span></div>
+    <div class="preload__main">
+      <p class="preload__eyebrow">What we’re learning <span><b id="pl-n">01</b> / 06</span></p>
+      <div class="preload__quotes" id="pl-quotes">
+        <p class="is-on">Existing equipment doesn’t serve every material movement. Mason goes after the ones it doesn’t.</p>
+        <p>Materials can be unloaded, stored, staged and delivered before anyone uses them. Every extra move costs time and labour.</p>
+        <p>Materials can arrive on site while the installation crew still can’t work.</p>
+        <p>The first place a material is put isn’t always where it’s used. It can be moved again, and again.</p>
+        <p>Material handlers often act as human dispatch systems, deciding what goes where, and when.</p>
+        <p>Long or awkward loads can need a second worker to steady them. And on a site, delays are all connected.</p>
+      </div>
+    </div>
+    <div class="preload__foot">
+      <div class="preload__bar"><i id="pl-fill"></i></div>
+      <div class="preload__row"><span>Loading Mason</span><span class="preload__pct"><b id="pl-pct">0</b>%</span></div>
+    </div>
+  </div>
+  <script>
+  /* Loading screen. Progress is real: page, fonts and the hero 3D model each count toward 100%.
+     The model reports through window.masonLoad.set('model', 0..1) from viewer.js. The screen
+     leaves as soon as everything is ready (never sooner than ~1.4 s, so it doesn't flash). */
+  (function () {
+    var root = document.documentElement, el = document.getElementById('preload');
+    var W = { dom: 0.08, fonts: 0.12, load: 0.2, model: 0.6 }, F = { dom: 0, fonts: 0, load: 0, model: 0 };
+    var fill = document.getElementById('pl-fill'), pct = document.getElementById('pl-pct');
+    var quotes = document.querySelectorAll('#pl-quotes p'), nEl = document.getElementById('pl-n');
+    var shown = 0, finished = false, t0 = Date.now(), qi = 0;
+    var hold = /[?&]loader\b/.test(location.search);   // add ?loader to the address to keep this screen up for previewing
+    window.masonLoad = { set: function (k, v) { if (k in F) F[k] = Math.max(F[k], Math.min(1, v)); } };
+    function target() { var t = 0; for (var k in W) t += W[k] * F[k]; return t; }
+    function allDone() { for (var k in F) if (F[k] < 1) return false; return true; }
+    function finish() {
+      if (finished) return; finished = true;
+      el.classList.add('is-done');
+      root.classList.remove('is-loading');
+      setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 900);
+    }
+    function frame() {
+      if (finished) return;
+      var goal = target();
+      var ready = !hold && allDone() && Date.now() - t0 > 1400;
+      if (ready) goal = 1;
+      else goal = Math.min(goal, 0.985);                // never show 100% before it is really ready
+      shown += Math.max((goal - shown) * 0.07, goal > shown ? 0.0008 : 0);
+      if (shown > goal) shown = goal;
+      var p = Math.round(shown * 100);
+      fill.style.transform = 'scaleX(' + shown.toFixed(4) + ')';
+      pct.textContent = p;
+      if (ready && shown >= 0.995) { fill.style.transform = 'scaleX(1)'; pct.textContent = '100'; setTimeout(finish, 280); return; }
+      requestAnimationFrame(frame);
+    }
+    function nextQuote() {
+      quotes[qi].classList.remove('is-on');
+      qi = (qi + 1) % quotes.length;
+      quotes[qi].classList.add('is-on');
+      nEl.textContent = ('0' + (qi + 1)).slice(-2);
+    }
+    setInterval(function () { if (!finished) nextQuote(); }, 4200);
+    root.classList.add('is-loading');
+    document.addEventListener('DOMContentLoaded', function () { window.masonLoad.set('dom', 1); });
+    if (document.readyState !== 'loading') window.masonLoad.set('dom', 1);
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(function () { window.masonLoad.set('fonts', 1); }); setTimeout(function () { window.masonLoad.set('fonts', 1); }, 4000); } else window.masonLoad.set('fonts', 1);
+    if (document.readyState === 'complete') window.masonLoad.set('load', 1); else window.addEventListener('load', function () { window.masonLoad.set('load', 1); });
+    if (!hold) setTimeout(function () { for (var k in F) F[k] = 1; }, 20000);   // failsafe on very slow connections
+    requestAnimationFrame(frame);
+  })();
+  </script>
+
   <header class="nav">
     <a class="brand" href="#top" aria-label="Mason">
       <span class="glyph" aria-hidden="true"></span>

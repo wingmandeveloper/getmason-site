@@ -53,6 +53,7 @@ try {
 } catch (e) {
   console.info('WebGL unavailable, skipping 3D.', e);
   stage.hidden = true;
+  if (window.masonLoad) window.masonLoad.set('model', 1);
 }
 
 if (renderer) {
@@ -259,13 +260,14 @@ if (renderer) {
   }
 
   const ready = () => { stage.classList.add('is-ready'); loop(); };
+  const report = (k, f) => { if (window.masonLoad) window.masonLoad.set(k, f); };
   new GLTFLoader().load(
     MODEL,
     (gltf) => { gltf.scene.rotation.y = THREE.MathUtils.degToRad(YAW);
       gltf.scene.traverse((o) => { if (o.isMesh) { o.castShadow = true; } });
-      place(gltf.scene); ready(); },
-    undefined,
-    () => { place(buildMason()); ready(); },
+      place(gltf.scene); ready(); report('model', 1); },
+    (e) => { if (e.lengthComputable && e.total) report('model', (e.loaded / e.total) * 0.97); },
+    () => { place(buildMason()); ready(); report('model', 1); },
   );
 
   function loop() {
