@@ -2,3 +2,7 @@ data/
 3d-input/
 server.js
 .DS_Store
+compare.html
+compare.js
+assets/mason-v1.glb
+assets/mason-v2.glb
